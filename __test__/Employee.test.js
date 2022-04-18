@@ -39,7 +39,7 @@ test("get a new id", () => {
   expect(id).toBe("please enter a valid id number");
 });
 
-test("get a new id", () => {
+test("get a new role", () => {
   const employee = new Employee("dave", "", null, null);
   let role = employee.getRole();
   expect(role).toBeFalsy();
