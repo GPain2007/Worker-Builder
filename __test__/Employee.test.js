@@ -2,11 +2,11 @@ const Employee = require("../lib/Employee");
 
 test("creates employee object", () => {
   const employee = new Employee("dave", "", null, "Manager");
-
+  let role = employee.role;
   expect(employee.name).toBe("dave");
   expect(employee.email).toBe("");
   expect(employee.getID()).toBe("please enter a valid id number");
-  expect(employee.role).toBe("Manager");
+  expect(role).toBe(role);
 });
 
 test("get a new name", () => {
@@ -42,5 +42,5 @@ test("get a new id", () => {
 test("get a new role", () => {
   const employee = new Employee("dave", "", null, null);
   let role = employee.getRole();
-  expect(role).toBeFalsy();
+  expect(role).toBe("Employee");
 });

@@ -1,12 +1,12 @@
 const Manager = require("../lib/Manager");
 
 test("creates employee object", () => {
-  const employee = new Manager("dave", "", null, "Manager", "");
-
+  const employee = new Manager("dave", "", null, "", "Manager");
+  let role = employee.getRole();
   expect(employee.name).toBe("dave");
   expect(employee.email).toBe("");
   expect(employee.getID()).toBe("please enter a valid id number");
-  expect(employee.role).toBe("Manager");
+  expect(role).toBe("Manager");
 });
 
 test("get a new name", () => {
@@ -15,7 +15,7 @@ test("get a new name", () => {
   expect(name).toBe("dave");
 });
 test("get Office Number", () => {
-  const employee = new Manager("dave", "", null, "Manager", "");
+  const employee = new Manager("dave", "", null, "");
   let officeNumber = employee.getOfficeNumber();
   expect(officeNumber).toBe("");
 });

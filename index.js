@@ -6,8 +6,8 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 
-const OUTPUT_DIR = path.resolve(_dirname, "dist");
-const outputFileName = path.join(OUTPUT_DIR, `index.html`);
+const OUTPUT_DIR = path.resolve(__dirname, "docs");
+const outputFileName = path.join(OUTPUT_DIR, "/index.html");
 
 const render = require("./src/Team");
 
@@ -37,7 +37,7 @@ const init = () => {
             createIntern();
             break;
           default:
-            CreateTeamHtmlFile();
+            createTeamHtmlFile();
         }
       })
       .catch((err) => {
@@ -110,9 +110,9 @@ const init = () => {
       .then((answers) => {
         const manager = new Manager(
           answers.managerName,
+          answers.managerEmail,
           answers.managerID,
-          answers.managerOfficeNumber,
-          answers.managerEmail
+          answers.managerOfficeNumber
         );
         teamMems.push(manager);
         console.log(teamMems);
@@ -184,8 +184,8 @@ const init = () => {
       .then((answers) => {
         const engineer = new Engineer(
           answers.engineerName,
-          answers.engineerID,
           answers.engineerEmail,
+          answers.engineerID,
           answers.engineerGithub
         );
         teamMems.push(engineer);
@@ -258,9 +258,9 @@ const init = () => {
       .then((answers) => {
         const intern = new Intern(
           answers.internName,
+          answers.internEmail,
           answers.internID,
-          answers.managerEmail,
-          answers.internSchoolname
+          answers.internSchoolName
         );
         teamMems.push(intern);
         console.log(teamMems);
@@ -273,7 +273,7 @@ const init = () => {
       });
   };
 
-  const buildTeamHtmllFile = () => {
+  const createTeamHtmlFile = () => {
     //Thank you to mike to letting me know about how to write to a file!! This is awesome!
     if (!fs.existsSync(OUTPUT_DIR)) {
       fs.mkdirSync(OUTPUT_DIR);

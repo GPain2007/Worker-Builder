@@ -2,11 +2,11 @@ const Engineer = require("../lib/Engineer");
 
 test("creates employee object", () => {
   const employee = new Engineer("dave", "", null, "", "Manager");
-
+  let role = employee.getRole();
   expect(employee.name).toBe("dave");
   expect(employee.email).toBe("");
   expect(employee.getID()).toBe("please enter a valid id number");
-  expect(employee.role).toBe("Manager");
+  expect(role).toBe(role);
 });
 
 test("get a new name", () => {

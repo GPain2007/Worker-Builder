@@ -9,11 +9,11 @@ const makeTeamHtml = (team) => {
       </div>
       <div class="card-body">
         <ul class="list-group">
-          <li class="list-group-item">${manager.getId()}</li>
-          <li class="list-group-item'>Email:
+          <li class="list-group-item">${manager.getID()}</li>
+          <li class="list-group-item">Email:
             <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a>
           </li>
-          <li class="list-group-item">Office Number: ${manager.getOffice()}</li>
+          <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
         </ul>
       </div>
     </div>
@@ -27,15 +27,15 @@ const makeTeamHtml = (team) => {
       <div class="card employee-card m-2">
         <div class="card-header bg-secondary text-light">
           <h2 class="card-title">${engineer.getName()}<h2>
-          <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
+          <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${engineer.getRole()}</h3>
         </div>
         <div class="card-body">
           <ul class="list-group">
-            <li class="list-group-item">${engineer.getId()}</li>
-            <li class="list-group-item'>Email:
+            <li class="list-group-item">${engineer.getID()}</li>
+            <li class="list-group-item">Email:
               <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a>
             </li>
-            <li class="list-group-item">Github Username: ${engineer.getGithub()}</li>
+            <li class="list-group-item">Github Username: <a href=https://github.com/${engineer.getGithub()}>${engineer.getGithub()}</li>
           </ul>
         </div>
       </div>
@@ -49,12 +49,12 @@ const makeTeamHtml = (team) => {
         <div class="card employee-card m-2">
           <div class="card-header bg-secondary text-light">
             <h2 class="card-title">${intern.getName()}<h2>
-            <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
+            <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${intern.getRole()}</h3>
           </div>
           <div class="card-body">
             <ul class="list-group">
-              <li class="list-group-item">${intern.getId()}</li>
-              <li class="list-group-item'>Email:
+              <li class="list-group-item">${intern.getID()}</li>
+              <li class="list-group-item">Email:
                 <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a>
               </li>
               <li class="list-group-item">School Name: ${intern.getSchool()}</li>
@@ -67,24 +67,25 @@ const makeTeamHtml = (team) => {
 
   const html = [];
 
-  console.log(html);
+  //console.log(html);
 
   html.push(
     team
-      .filer((employee) => employee.getRole() === "Manager")
+      .filter((employee) => employee.getRole() === "Manager")
       .map((manager) => makeManagerHtml(manager))
+      .join("")
   );
-  console.log(html);
+  //console.log(html);
   html.push(
     team
-      .filer((employee) => employee.getRole() === "Engineer")
+      .filter((employee) => employee.getRole() === "Engineer")
       .map((engineer) => makeEngineerHtml(engineer))
       .join("")
   );
-  console.log(html);
+  //console.log(html);
   html.push(
     team
-      .filer((employee) => employee.getRole() === "Intern")
+      .filter((employee) => employee.getRole() === "Intern")
       .map((intern) => makeInternHtml(intern))
       .join("")
   );
@@ -101,7 +102,7 @@ module.exports = (Team) => {
   <head>
     <meta charset="utf-8">
     <meta name="veiwport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel-"stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
@@ -114,12 +115,12 @@ module.exports = (Team) => {
         <div class="col-12 jumbotron mb-3 team-heading bg-primary text-light">
           <h1 class="text-center">My DEV TEam</h1>
           <hr class="my-4">
-          <p class="text-center'> This HTML file has beeen dynamically generated using this very Node.js command line app</p>
+          <p class="text-center"> This HTML file has beeen dynamically generated using this very Node.js command line app</p>
         </div>
       </div>
     </div>
     <div class="container">
-      <div class=row d-flex justify-content-center">
+      <div class="row d-flex justify-content-center">
       ${makeTeamHtml(Team)}
       </div>
     </div>
